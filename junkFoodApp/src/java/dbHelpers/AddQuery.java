@@ -9,10 +9,12 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import model.JunkFood;
 
 
 
@@ -52,5 +54,23 @@ public class AddQuery {
     
     }
 
-
+    public void doAdd (JunkFood junkFood) {
+    
+        try {
+            String query = "INSERT INTO junkFood (junkFoodName, junkFoodType, calories, junkFoodRank) VALUES (?, ?, ?, ?)";
+            
+            PreparedStatement ps = conn.prepareStatement(query);
+            
+            ps.setString(1, junkFood.getJunkFoodName());
+            ps.setString(2, junkFood.getJunkFoodType());
+            ps.setInt(3, junkFood.getCalories());
+            ps.setInt(4, junkFood.getJunkFoodRank());
+            
+            ps.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }
+    
+}
