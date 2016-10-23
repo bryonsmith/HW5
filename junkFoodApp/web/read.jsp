@@ -12,6 +12,12 @@
     
     <body>
         <h1>My Junk Food Ranking</h1>
+        
         <%= table %>
+        
+        <br><br>
+        
+        <a href ="add"> Add a New Favorite Junk Food</a>
+        
     </body>
 </html>
