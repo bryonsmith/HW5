@@ -58,9 +58,7 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            // Pass exection on to doPost
-                doPost(request, response);
+        processRequest(request, response);
     }
 
     /**
@@ -74,21 +72,7 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-            //get the data
-            String name = request.getParameter("name");
-            String type = request.getParameter("type");
-            int calories = Integer.parseInt(request.getParameter("calories"));
-            int rank = Integer.parseInt(request.getParameter("rank"));
-            
-            //set up a junkFood object
-            
-            //set up an addQuery object
-            
-            //pass the junkFood to addQuery to add to the database
-            
-            //pass exection control to the ReadServlet
-        
+        processRequest(request, response);
     }
 
     /**
