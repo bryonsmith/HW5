@@ -26,29 +26,37 @@ public class AddQuery {
     
     private Connection conn;
     
-    public AddQuery() throws IOException, SQLException{
+    public AddQuery(){
+    
+    Properties props = new Properties();  //MWC
+    InputStream instr = getClass().getResourceAsStream("dbConn.properties");
+    
+        try {
+            props.load(instr);
+        } catch (IOException ex) {
+            Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         try {
-            
-            Properties props = new Properties();  //MWC
-            InputStream instr = getClass().getResourceAsStream("dbConn.properties");
-            try {
-                props.load(instr);
-            } catch (IOException ex) {
-                Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
-            }
-            try {
-                instr.close();
-            } catch (IOException ex) {
-                Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            instr.close();
+        } catch (IOException ex) {
+            Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
             String driver = props.getProperty("driver.name");
             String url = props.getProperty("server.name");
             String username = props.getProperty("user.name");
             String passwd = props.getProperty("user.password");
+            
+        try {
             Class.forName(driver);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        try {
             conn = DriverManager.getConnection(url, username, passwd);
-        } catch (ClassNotFoundException | SQLException ex) {
+        } catch (SQLException ex) {
             Logger.getLogger(AddQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
     
