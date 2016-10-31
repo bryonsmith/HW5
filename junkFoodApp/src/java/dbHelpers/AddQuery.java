@@ -69,10 +69,10 @@ public class AddQuery {
             
             PreparedStatement ps = conn.prepareStatement(query);
             
-            ps.setString(1, junkFood.getJunkFoodName());
-            ps.setString(2, junkFood.getJunkFoodType());
-            ps.setInt(3, junkFood.getCalories());
-            ps.setInt(4, junkFood.getJunkFoodRank());
+                ps.setString(1, junkFood.getJunkFoodName());
+                ps.setString(2, junkFood.getJunkFoodType());
+                ps.setInt(3, junkFood.getCalories());
+                ps.setInt(4, junkFood.getJunkFoodRank());
             
             ps.executeUpdate();
         } catch (SQLException ex) {

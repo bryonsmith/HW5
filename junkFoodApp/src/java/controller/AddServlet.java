@@ -5,13 +5,16 @@
  */
 package controller;
 
+import dbHelpers.AddQuery;
 import java.io.IOException;
 import java.io.PrintWriter;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import model.JunkFood;
 
 /**
  *
@@ -58,7 +61,10 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+            // Pass exection on to doPost
+                doPost(request, response);
+            
     }
 
     /**
@@ -72,7 +78,33 @@ public class AddServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        
+            //get the data
+            String name = request.getParameter("name");
+            String type = request.getParameter("type");
+            int calories = Integer.parseInt(request.getParameter("calories"));
+            int rank = Integer.parseInt(request.getParameter("rank"));
+            
+            //set up a junkFood object
+            JunkFood junkFood = new JunkFood();
+            junkFood.setJunkFoodName(name);
+            junkFood.setJunkFoodType(type);
+            junkFood.setCalories(calories);
+            junkFood.setJunkFoodRank(rank);
+            
+            //set up an addQuery object
+            AddQuery aq = new AddQuery();
+          
+            //pass the friend to addQuery to add to the database
+            aq.doAdd(junkFood);
+            
+            //pass exection control to the ReadServlet
+            String url = "/read";
+            
+            RequestDispatcher dispatcher = request.getRequestDispatcher(url);
+            dispatcher.forward (request, response);
+            
+        
     }
 
     /**
