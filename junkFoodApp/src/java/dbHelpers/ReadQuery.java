@@ -68,7 +68,18 @@ public class ReadQuery {
         
         String table = "";
         
-        table += "<table border=1>";
+        table += "<table class = 'table1'>";
+        
+        table += "<tr>";
+        table += "<th> Junk Food ID </th>";
+        table += "<th> Name </th>";
+        table += "<th> Type </th>";
+        table += "<th> Calories </th>";
+        table += "<th> Rank </th>";
+        table += "<th>  </th>";
+        table += "<th>  </th>";
+        
+        table += "</tr>";
         
         try {
             while(this.results.next()){
@@ -105,12 +116,17 @@ public class ReadQuery {
                 table += "<a href=delete?junkFoodID=" + junkFood.getJunkFoodID() + "> Delete </a>";
                 table += "</td>";
                 
+                table += "<td>";
+                table += "<a href=add?junkFoodID=" + junkFood.getJunkFoodID() + "> Add </a>";
+                table += "</td>";
+                
                 table += "</tr>";
                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(ReadQuery.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
         
         
         table += "</table>";
