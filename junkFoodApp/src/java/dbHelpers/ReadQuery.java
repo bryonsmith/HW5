@@ -101,6 +101,9 @@ public class ReadQuery {
                 table += junkFood.getJunkFoodRank();
                 table += "</td>";
                 
+                table += "<td>";
+                table += "<a href=delete?junkFoodID=" + junkFood.getJunkFoodID() + "> Delete </a>";
+                table += "</td>";
                 
                 table += "</tr>";
                 
